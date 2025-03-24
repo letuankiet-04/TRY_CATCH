@@ -26,7 +26,7 @@ public class Editor extends Window {
     public void setId(String id) {
         try {
             if (!id.matches("E\\d{3}")) {
-                System.out.println("ID must be in format Exxx, where x is a digit.");
+                System.out.println("ID must be in format Exxx");
                 return;
             }
             this.id = id;
@@ -65,6 +65,6 @@ public class Editor extends Window {
     @Override
     public void output() {
         super.output();
-        System.out.println("Editor [ID=" + id + ", Title=" + title + "]");
+        System.out.println("Editor [ID = " + id + ", Title = " + title + "]");
     }
 }
