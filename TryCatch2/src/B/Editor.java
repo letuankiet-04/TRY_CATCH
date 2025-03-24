@@ -2,7 +2,6 @@ package B;
 
 import java.util.Scanner;
 
-
 public class Editor {
     private String id;
     private String title;
@@ -18,14 +17,6 @@ public class Editor {
         this.version = "1.0.0";
     }
 
-    public Editor(String id, String title, int width, int length, String version) {
-        setId(id);
-        setTitle(title);
-        setWidth(width);
-        setLength(length);
-        setVersion(version);
-    }
-
     public String getId() {
         return id;
     }
@@ -35,10 +26,10 @@ public class Editor {
             if (id.startsWith("EDT") && id.length() == 4 && Character.isDigit(id.charAt(3))) {
                 this.id = id;
             } else {
-                System.out.println("Invalid ID format. Must be EDTx where x is a digit.");
+                System.out.println("Invalid ");
             }
         } catch (Exception e) {
-            System.out.println("Error setting ID.");
+            System.out.println("Error");
         }
     }
 
@@ -51,10 +42,10 @@ public class Editor {
             if (!title.trim().isEmpty()) {
                 this.title = title;
             } else {
-                System.out.println("Title cannot be empty.");
+                System.out.println("empty.");
             }
         } catch (Exception e) {
-            System.out.println("Error setting title.");
+            System.out.println("Error");
         }
     }
 
@@ -66,7 +57,7 @@ public class Editor {
         if (width >= 10 && width <= 100) {
             this.width = width;
         } else {
-            System.out.println("Width must be between 10 and 100.");
+            System.out.println("Width between 10 and 100.");
         }
     }
 
@@ -78,7 +69,7 @@ public class Editor {
         if (length >= 10 && length <= 100) {
             this.length = length;
         } else {
-            System.out.println("Length must be between 10 and 100.");
+            System.out.println("Length between 10 and 100.");
         }
     }
 
@@ -87,12 +78,34 @@ public class Editor {
     }
 
     public void setVersion(String version) {
-        String[] parts = version.split("\\.");
-        if (parts.length == 3 && parts[0].matches("\\d") && parts[1].matches("\\d") && parts[2].matches("\\d")) {
-            this.version = version;
-        } else {
-            System.out.println("Invalid version format. Must be x.x.x with digits.");
+        try {
+            String[] parts = version.split("\\.");
+            if (parts.length == 3 && parts[0].length() == 1 && parts[1].length() == 1 && parts[2].length() == 1) {
+                Integer.parseInt(parts[0]);
+                Integer.parseInt(parts[1]);
+                Integer.parseInt(parts[2]);
+                this.version = version;
+            } else {
+                System.out.println("Invalid");
+            }
+        } catch (Exception e) {
+            System.out.println("Error");
         }
+    }
+
+    public void input() {
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Enter ID: ");
+        setId(sc.nextLine());
+        System.out.print("Enter Title: ");
+        setTitle(sc.nextLine());
+        System.out.print("Enter Width: ");
+        setWidth(sc.nextInt());
+        System.out.print("Enter Length: ");
+        setLength(sc.nextInt());
+        sc.nextLine();
+        System.out.print("Enter Version: ");
+        setVersion(sc.nextLine());
     }
 
     public void output() {

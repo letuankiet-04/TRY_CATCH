@@ -3,7 +3,6 @@ package B;
 import A.IList;
 import java.util.ArrayList;
 
-
 public class MyList implements IList {
     private ArrayList<Editor> list;
 
@@ -17,20 +16,22 @@ public class MyList implements IList {
     }
 
     @Override
-    public int search(String id) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getId().equals(id)) {
-                return i;
+    public Editor search(String id) {
+        for (Editor e : list) {
+            if (e.getId().equalsIgnoreCase(id)) {
+                return e;
             }
         }
-        return -1;
+        return null;
     }
+
     @Override
     public boolean update(Editor x) {
-        int index = search(x.getId());
-        if (index != -1) {
-            list.set(index, x);
-            return true;
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId().equalsIgnoreCase(x.getId())) {
+                list.set(i, x);
+                return true;
+            }
         }
         return false;
     }
@@ -41,5 +42,4 @@ public class MyList implements IList {
             e.output();
         }
     }
-
 }

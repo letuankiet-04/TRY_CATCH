@@ -1,16 +1,14 @@
 package C;
 
-import A.IList;
 import B.Editor;
 import B.MyList;
 import java.util.Scanner;
 
-// Class Test containing the main menu-driven program
 public class Test {
     public static void main(String[] args) {
         MyList list = new MyList();
         Scanner sc = new Scanner(System.in);
-        int choice;
+        int choice = 0;
         do {
             System.out.println("\nMenu:");
             System.out.println("1. Add an Editor");
@@ -19,22 +17,27 @@ public class Test {
             System.out.println("4. Print All");
             System.out.println("5. Exit");
             System.out.print("Enter your choice: ");
-            choice = sc.nextInt();
-            sc.nextLine(); // Clear buffer
+            
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("Invalid input");
+                continue;
+            }
 
             switch (choice) {
                 case 1:
                     Editor e = new Editor();
-                    e.output();
+                    e.input();
                     list.add(e);
+                    e.output();
                     break;
                 case 2:
                     System.out.print("Enter ID to search: ");
                     String id = sc.nextLine();
-                    int index = list.search(id);
-                    if (index != -1) {
-                        System.out.println("Editor found:");
-                        list.printAll();
+                    Editor found = list.search(id);
+                    if (found != null) {
+                        found.output();
                     } else {
                         System.out.println("Editor not found.");
                     }
@@ -43,21 +46,22 @@ public class Test {
                     System.out.print("Enter ID to update: ");
                     id = sc.nextLine();
                     Editor updatedEditor = new Editor();
+                    updatedEditor.input();
                     updatedEditor.setId(id);
                     if (list.update(updatedEditor)) {
-                        System.out.println("Editor updated successfully.");
+                        updatedEditor.output();
                     } else {
-                        System.out.println("Editor not found.");
+                        System.out.println("Update failed");
                     }
                     break;
                 case 4:
                     list.printAll();
                     break;
                 case 5:
-                    System.out.println("Exiting program...");
+                    System.out.println("Exiting");
                     break;
                 default:
-                    System.out.println("Invalid choice. Try again.");
+                    System.out.println("Invalid ");
             }
         } while (choice != 5);
     }
