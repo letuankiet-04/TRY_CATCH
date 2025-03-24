@@ -55,11 +55,11 @@ public class Test {
                     break;
                 case 5:
                     
-                    System.out.println("Exiting program...");
+                    System.out.println("Exiting");
                     break;
                 default:
                   
-                    System.out.println("Invalid choice. Please enter a number from 1 to 5.");
+                    System.out.println("Invalid choice");
             }
         } while (choice != 5);
     }

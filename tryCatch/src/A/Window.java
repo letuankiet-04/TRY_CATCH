@@ -24,7 +24,7 @@ public class Window {
     public void setWidth(int width) {
         try {
             if (width < 10 || width > 100) {
-                System.out.println("Width must be between 10 and 100.");
+                System.out.println("Width between 10 and 100.");
                 return;
             }
             this.width = width;
@@ -40,12 +40,12 @@ public class Window {
     public void setLength(int length) {
         try {
             if (length < 10 || length > 100) {
-                System.out.println("Length must be between 10 and 100.");
+                System.out.println("Length  between 10 and 100.");
                 return;
             }
             this.length = length;
         } catch (Exception e) {
-            System.out.println("Invalid input");
+            System.out.println("Invalid ");
         }
     }
 

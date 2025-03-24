@@ -26,12 +26,12 @@ public class Editor extends Window {
     public void setId(String id) {
         try {
             if (!id.matches("E\\d{3}")) {
-                System.out.println("ID must be in format Exxx");
+                System.out.println("ID: ");
                 return;
             }
             this.id = id;
         } catch (Exception e) {
-            System.out.println("Invalid .");
+            System.out.println("Invalid");
         }
     }
 
@@ -47,7 +47,7 @@ public class Editor extends Window {
             }
             this.title = title;
         } catch (Exception e) {
-            System.out.println("Invalid input for title.");
+            System.out.println("Invalid");
         }
     }
 
