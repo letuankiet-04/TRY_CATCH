@@ -1,6 +1,5 @@
 
 package B;
-
 import A.Window;
 import java.util.Scanner;
 
@@ -16,8 +15,8 @@ public class Editor extends Window {
 
     public Editor(int width, int length, String id, String title) {
         super(width, length);
-        setId(id);
-        setTitle(title);
+        this.id = id;
+        this.title = title;
     }
 
     public String getId() {
@@ -25,10 +24,15 @@ public class Editor extends Window {
     }
 
     public void setId(String id) {
-        if (!id.matches("E\\d{3}")) {
-            throw new IllegalArgumentException("ID must be in format Exxx, where x is a digit.");
+        try {
+            if (!id.matches("E\\d{3}")) {
+                System.out.println("ID must be in format Exxx, where x is a digit.");
+                return;
+            }
+            this.id = id;
+        } catch (Exception e) {
+            System.out.println("Invalid .");
         }
-        this.id = id;
     }
 
     public String getTitle() {
@@ -36,26 +40,29 @@ public class Editor extends Window {
     }
 
     public void setTitle(String title) {
-        if (title == null || title.trim().isEmpty()) {
-            throw new IllegalArgumentException("Title cannot be empty.");
+        try {
+            if (title == null || title.trim().isEmpty()) {
+                System.out.println("Title cannot be empty.");
+                return;
+            }
+            this.title = title;
+        } catch (Exception e) {
+            System.out.println("Invalid input for title.");
         }
-        this.title = title;
     }
 
+    @Override
     public void input() {
         super.input();
         Scanner sc = new Scanner(System.in);
-        try {
-            System.out.print("Enter ID (Exxx): ");
-            setId(sc.next());
-            sc.nextLine(); 
-            System.out.print("Enter title: ");
-            setTitle(sc.nextLine());
-        } catch (Exception e) {
-            System.out.println("Invalid input: " + e.getMessage());
-        }
+        System.out.print("Enter ID (Exxx): ");
+        setId(sc.next());
+        sc.nextLine(); 
+        System.out.print("Enter title: ");
+        setTitle(sc.nextLine());
     }
 
+    @Override
     public void output() {
         super.output();
         System.out.println("Editor [ID=" + id + ", Title=" + title + "]");

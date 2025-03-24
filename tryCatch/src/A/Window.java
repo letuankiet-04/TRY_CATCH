@@ -1,3 +1,4 @@
+
 package A;
 
 import java.util.Scanner;
@@ -11,9 +12,9 @@ public class Window {
         this.length = 10;
     }
 
-    public Window(int width, int length) throws IllegalArgumentException {
-        setWidth(width);
-        setLength(length);
+    public Window(int width, int length) {
+        this.width = width;
+        this.length = length;
     }
 
     public int getWidth() {
@@ -21,10 +22,15 @@ public class Window {
     }
 
     public void setWidth(int width) {
-        if (width < 10 || width > 100) {
-            throw new IllegalArgumentException("Width must be between 10 and 100.");
+        try {
+            if (width < 10 || width > 100) {
+                System.out.println("Width must be between 10 and 100.");
+                return;
+            }
+            this.width = width;
+        } catch (Exception e) {
+            System.out.println("Invalid input ");
         }
-        this.width = width;
     }
 
     public int getLength() {
@@ -32,10 +38,15 @@ public class Window {
     }
 
     public void setLength(int length) {
-        if (length < 10 || length > 100) {
-            throw new IllegalArgumentException("Length must be between 10 and 100.");
+        try {
+            if (length < 10 || length > 100) {
+                System.out.println("Length must be between 10 and 100.");
+                return;
+            }
+            this.length = length;
+        } catch (Exception e) {
+            System.out.println("Invalid input");
         }
-        this.length = length;
     }
 
     public void input() {
@@ -46,11 +57,12 @@ public class Window {
             System.out.print("Enter length: ");
             setLength(sc.nextInt());
         } catch (Exception e) {
-            System.out.println("Invalid input: " + e.getMessage());
+            System.out.println("Please enter integer.");
+            sc.nextLine();
         }
     }
 
     public void output() {
-        System.out.println("Window [Width=" + width + ", Length=" + length + "]");
+        System.out.println(width +","+ length);
     }
 }
