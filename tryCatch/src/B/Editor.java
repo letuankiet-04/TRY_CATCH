@@ -55,7 +55,7 @@ public class Editor extends Window {
     public void input() {
         super.input();
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter ID (Exxx): ");
+        System.out.print("Enter ID: ");
         setId(sc.next());
         sc.nextLine(); 
         System.out.print("Enter title: ");
@@ -65,6 +65,6 @@ public class Editor extends Window {
     @Override
     public void output() {
         super.output();
-        System.out.println("Editor [ID = " + id + ", Title = " + title + "]");
+        System.out.println("ID = " + id + ", Title = " + title );
     }
 }
